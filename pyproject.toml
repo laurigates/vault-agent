@@ -3,10 +3,24 @@ name = "vault-agent"
 version = "0.1.0"
 description = "Claude Agent SDK app for Obsidian vault maintenance (tags, links, stubs, MOCs)."
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "Lauri Gates", email = "lauri.gates@forumvirium.fi" }
 ]
 requires-python = ">=3.13"
+keywords = ["claude", "agent-sdk", "cli", "obsidian", "vault", "markdown", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Utilities",
+]
 dependencies = [
     "claude-agent-sdk>=0.1.39",
     "python-frontmatter>=1.1.0",
@@ -15,14 +29,20 @@ dependencies = [
     "typer>=0.24.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/laurigates/vault-agent"
+Repository = "https://github.com/laurigates/vault-agent"
+Issues = "https://github.com/laurigates/vault-agent/issues"
+
 [project.scripts]
 vault-agent = "vault_agent.main:app"
 
 [build-system]
-requires = ["uv_build>=0.10.2,<0.11.0"]
+requires = ["uv_build>=0.10.2,<0.12.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
+    "ruff>=0.9.0",
 ]

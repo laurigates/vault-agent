@@ -1,11 +1,20 @@
 # vault-agent
 
-Claude Agent SDK application for Obsidian vault maintenance — tag consolidation, broken-link repair, stub classification, and MOC curation. Modeled on [`git-repo-agent`](../git-repo-agent/).
+Claude Agent SDK application for Obsidian vault maintenance — tag consolidation, broken-link repair, stub classification, and MOC curation. Modeled on [`git-repo-agent`](https://github.com/laurigates/git-repo-agent); extracted from [`laurigates/claude-plugins`](https://github.com/laurigates/claude-plugins).
+
+## Install
+
+```bash
+# From PyPI (after the first release)
+uv tool install vault-agent
+
+# From source
+uv tool install git+https://github.com/laurigates/vault-agent
+```
 
 ## Quick start
 
 ```bash
-uv tool install -e ./vault-agent
 
 # Read-only audit — no LLM, no writes
 vault-agent analyze ~/Documents/MyVault
@@ -53,7 +62,7 @@ vault-agent/                          ← Python CLI (Typer + claude-agent-sdk)
 └── docs/adr/                         Architecture decision records
 ```
 
-Skill prompts live in [`../obsidian-plugin/skills/vault-*`](../obsidian-plugin/skills/) — seven SKILL.md files covering the knowledge the subagents need.
+Skill prompts are sourced from the [`obsidian-plugin/skills/vault-*`](https://github.com/laurigates/claude-plugins/tree/main/obsidian-plugin/skills) SKILL.md files in the claude-plugins monorepo — seven files covering the knowledge the subagents need. A standalone install has no monorepo siblings, so the runtime falls back to the pre-compiled artifacts shipped under `src/vault_agent/prompts/generated/` ([ADR-0006](docs/adr/0006-standalone-install-prompt-fallback.md)); `scripts/compile_prompts.py --check` verifies they are current.
 
 ## Modes
 
@@ -138,6 +147,8 @@ See [ADR-0004](docs/adr/0004-safety-hooks-vault-paths.md).
 ```bash
 uv sync
 uv run pytest
+uv run ruff check .
+uv run python scripts/compile_prompts.py --check
 ```
 
 Full audit against a real vault:
@@ -145,6 +156,23 @@ Full audit against a real vault:
 ```bash
 uv run vault-agent analyze ~/Documents/YourVault
 ```
+
+## Releasing
+
+Releases publish to [PyPI](https://pypi.org/project/vault-agent/) via
+[Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (OIDC — no API
+token stored). `.github/workflows/publish.yml` runs on a published GitHub
+Release and builds + uploads the sdist and wheel.
+
+**One-time PyPI setup** (owner action, before the first release): add a
+*pending publisher* at
+<https://pypi.org/manage/account/publishing/> with
+project `vault-agent`, owner `laurigates`, repository `vault-agent`,
+workflow `publish.yml`, and environment `pypi`.
+
+To cut a release: bump `version` in `pyproject.toml`, tag, and create a GitHub
+Release for the tag. (Automating this with release-please is a planned
+follow-up once the release App credentials are provisioned for this repo.)
 
 ## Status
 

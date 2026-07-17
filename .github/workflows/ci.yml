@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Configure git identity
+        # The worktree tests shell out to real git: `git commit` exits 128
+        # without a configured identity, and the tests assume the default
+        # branch is `main` (the runner's git defaults to `master`).
+        run: |
+          git config --global user.email "ci@vault-agent.invalid"
+          git config --global user.name "vault-agent CI"
+          git config --global init.defaultBranch main
+      - name: Lint (ruff)
+        # Non-blocking for now: the code inherited from the monorepo is not yet
+        # ruff-clean. Findings are surfaced here; a dedicated cleanup pass will
+        # flip this to a hard gate (tracked as a follow-up).
+        continue-on-error: true
+        run: |
+          uv run ruff check --output-format=github .
+          uv run ruff format --check .
+      - name: Test
+        run: uv run pytest -q
+      - name: Compiled prompt artifacts are current
+        # The standalone install serves pre-compiled prompts from
+        # src/vault_agent/prompts/generated/ (ADR-0006). In this repo the
+        # monorepo skill sources are absent, so --check verifies the committed
+        # artifacts parse and cover every subagent rather than recompiling.
+        run: uv run python scripts/compile_prompts.py --check
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Build sdist + wheel
+        run: uv build
+      - name: Verify the built CLI runs standalone
+        run: |
+          uv run --isolated --no-project --with dist/*.whl vault-agent --help

@@ -8,3 +8,8 @@ build/
 *.egg-info/
 .python-version.local
 .DS_Store
+
+# Test / coverage
+.ruff_cache/
+.coverage
+htmlcov/
