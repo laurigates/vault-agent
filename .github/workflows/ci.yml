@@ -30,10 +30,9 @@ jobs:
           git config --global user.name "vault-agent CI"
           git config --global init.defaultBranch main
       - name: Lint (ruff)
-        # Non-blocking for now: the code inherited from the monorepo is not yet
-        # ruff-clean. Findings are surfaced here; a dedicated cleanup pass will
-        # flip this to a hard gate (tracked as a follow-up).
-        continue-on-error: true
+        # Hard gate: the inherited code is ruff-clean as of the sweep that
+        # mirrored laurigates/claude-plugins#2124 here. The ruff version is
+        # pinned in the dev dependency group so formatting stays reproducible.
         run: |
           uv run ruff check --output-format=github .
           uv run ruff format --check .
