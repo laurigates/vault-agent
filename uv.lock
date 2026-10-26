@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.13"
 
 [[package]]
@@ -97,19 +97,21 @@ wheels = [
 
 [[package]]
 name = "claude-agent-sdk"
-version = "0.1.61"
+version = "0.2.174"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
+    { name = "jsonschema" },
     { name = "mcp" },
+    { name = "sniffio" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/15/31/e98b9e1d20e4e6e7c8e52cd9b30b63c8686a9781e9db0d941dc7801453b9/claude_agent_sdk-0.1.61.tar.gz", hash = "sha256:2dd6bcc8ed5a13b1a70dc986a01519537e9e690636bb278b942ede955fa9a09a", size = 127793, upload-time = "2026-04-16T22:02:09.092Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9c/e2/bdfaa2332b92492a8c056b7650348280e3394d1993879ea2656d95c36270/claude_agent_sdk-0.2.174.tar.gz", hash = "sha256:2380f28ad19c9f95d2de01d75ad4eeffa1ec2008cb4e35e5bc569de6279d85f9", size = 398744, upload-time = "2026-10-24T00:21:40.502Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c6/5f/8236b03d31c6151c164f9090e5ba68f189a56ec8a9a482ea8c0e0600c303/claude_agent_sdk-0.1.61-py3-none-macosx_11_0_arm64.whl", hash = "sha256:22d091e0b9b310125e2c6fcd454075f0f71c987db86b79153df91bdb412b9793", size = 60131827, upload-time = "2026-04-16T22:02:12.772Z" },
-    { url = "https://files.pythonhosted.org/packages/5e/b3/a86c5ed60000fddfc6d081861480c15399658479f484e05d610f55a3fe3d/claude_agent_sdk-0.1.61-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:7d0d9020b8143a26460180a4d36609cb70c26f821f2dd20d246c4449de44bdad", size = 61951661, upload-time = "2026-04-16T22:02:17.275Z" },
-    { url = "https://files.pythonhosted.org/packages/5b/9f/44a35c80237dd1a6bd8a80e74c4fbb60ba6e36b1eb079f9ce1dd1f3e45a1/claude_agent_sdk-0.1.61-py3-none-manylinux_2_17_aarch64.whl", hash = "sha256:c63362ed0acb95b89d522d3a377e030b32d1169989f3e45fce85f40ed8f21da1", size = 73384844, upload-time = "2026-04-16T22:02:22.428Z" },
-    { url = "https://files.pythonhosted.org/packages/c3/5b/0822bcacb9fc02ecd1349bb4f81aa6c9c2f0588aafd10ef6ab419a5dc836/claude_agent_sdk-0.1.61-py3-none-manylinux_2_17_x86_64.whl", hash = "sha256:255e698bf6f78f1ed6790b2dbfa3b56870a9efbef1bb4ca6b118418eed7b715c", size = 73526187, upload-time = "2026-04-16T22:02:27.451Z" },
-    { url = "https://files.pythonhosted.org/packages/2e/77/999255728564ab8d872dca9ddd05dccef5186a8f2596421981b34e5c8094/claude_agent_sdk-0.1.61-py3-none-win_amd64.whl", hash = "sha256:bd3cc54476baabc050012b1a4577d9f59a0ab2545bb4dea64c61baa0e7dfb0c3", size = 75667458, upload-time = "2026-04-16T22:02:33.11Z" },
+    { url = "https://files.pythonhosted.org/packages/b9/92/4fd927a4c8cd3ebbdf16b6a3d2c1932df6dd46561a8747f82f34a9636919/claude_agent_sdk-0.2.174-py3-none-macosx_11_0_arm64.whl", hash = "sha256:7729458ca2e0031e6d67452dd8fdda4ff07b4fcf40c4bfed867c78ae963bdbdd", size = 115876275, upload-time = "2026-10-24T00:21:45.526Z" },
+    { url = "https://files.pythonhosted.org/packages/4a/ad/c09cd2dcae60d1c3b43b1587633e22a77a637ca8ba6783cd91285a700a0b/claude_agent_sdk-0.2.174-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:368699227f4ccb6fff541f4add983854fdd6e95fed5e509264cb079316ae234b", size = 121558071, upload-time = "2026-10-24T00:21:49.748Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/f1/58aa5f772dd370fd764948641a4a87b1e7661adb0772d73a219276f59514/claude_agent_sdk-0.2.174-py3-none-manylinux_2_17_aarch64.whl", hash = "sha256:0d46be4e858418227d1d455c7787335f4bed073899f48b657c01cc210683803f", size = 125627582, upload-time = "2026-10-24T00:21:54.903Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/f6/6f63561fbb79d9d2bd26219dffe1458c99b59ee5ae78bb9dac808c22d546/claude_agent_sdk-0.2.174-py3-none-manylinux_2_17_x86_64.whl", hash = "sha256:728592effdfe63e96fbad7ba3b2ddf642e3aad344e73692b429898fbfcb33f12", size = 125972029, upload-time = "2026-10-24T00:21:59.907Z" },
+    { url = "https://files.pythonhosted.org/packages/03/b0/d0e30318a9a48beed59f73f21341afbd50ffa24d5c2c73cd4edfff15509f/claude_agent_sdk-0.2.174-py3-none-win_amd64.whl", hash = "sha256:8be611533b7be210791a39716479d7d692e5e3afe8798529b5262db00f470165", size = 129448695, upload-time = "2026-10-24T00:22:05.045Z" },
 ]
 
 [[package]]
@@ -677,6 +679,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/58/15/8b3609fd3830ef7b27b655beb4b4e9c62313a4e8da8c676e142cc210d58e/shellingham-1.5.4.tar.gz", hash = "sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de", size = 10310, upload-time = "2023-10-24T04:13:40.426Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl", hash = "sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686", size = 9755, upload-time = "2023-10-24T04:13:38.866Z" },
+]
+
+[[package]]
+name = "sniffio"
+version = "1.3.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a2/87/a6771e1546d97e7e041b6ae58d80074f81b7d5121207425c964ddf5cfdbd/sniffio-1.3.1.tar.gz", hash = "sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc", size = 20372, upload-time = "2024-02-25T23:20:04.057Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl", hash = "sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2", size = 10235, upload-time = "2024-02-25T23:20:01.196Z" },
 ]
 
 [[package]]
