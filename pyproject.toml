@@ -49,3 +49,9 @@ dev = [
     # pins the same version on its pre-commit and CI surfaces.
     "ruff==0.15.8",
 ]
+
+[tool.ruff.lint]
+# ruff 0.15's default rule set, made explicit: ruff 0.16 widened the default
+# from 59 rules to 400+, so without this a ruff bump changes what CI enforces.
+# Adopting a wider set is a separate decision from bumping the ruff version.
+select = ["E4", "E7", "E9", "F"]
